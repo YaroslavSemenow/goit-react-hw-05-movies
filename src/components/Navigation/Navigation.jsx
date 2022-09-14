@@ -3,25 +3,18 @@ import Container from 'components/Container/Container';
 import styles from './Navigation.module.css';
 
 export default function Navigation() {
+  const activePage = ({ isActive }) => {
+    return `${styles.link} + ' ' + ${isActive ? styles.activeLink : ''}`;
+  };
+
   return (
     <Container>
       <nav>
-        <NavLink
-          to="/"
-          className={({ isActive }) => {
-            console.log(styles.link + (isActive ? ' activeLink' : ''));
-            return styles.link + (isActive ? styles.activeLink : '');
-          }}
-        >
+        <NavLink to="/" className={activePage}>
           Home
         </NavLink>
 
-        <NavLink
-          to="/movies"
-          className={({ isActive }) =>
-            styles.link + (isActive ? ' activeLink' : '')
-          }
-        >
+        <NavLink to="/movies" className={activePage}>
           Movies
         </NavLink>
       </nav>

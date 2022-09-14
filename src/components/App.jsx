@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Container from './Container/Container';
 import AppBar from './AppBar/AppBar';
+import HomePage from '../pages/HomePages/HomePage';
 
 export const App = () => {
   return (
@@ -9,7 +10,7 @@ export const App = () => {
 
       <Container>
         <Routes>
-          <Route></Route>
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </Container>
     </>
