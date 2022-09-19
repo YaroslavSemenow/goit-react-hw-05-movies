@@ -1,8 +1,6 @@
-// import { Outlet } from 'react-router-dom';
-
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import * as API from '../../service/Api-service';
+import { Link, useParams, Outlet } from 'react-router-dom';
+import { getMovieDetails } from '../../service/Api-service';
 import styles from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
@@ -23,7 +21,7 @@ export default function MovieDetailsPage() {
           vote_average,
           overview,
           genres,
-        } = await API.getMovieDetails(movieId);
+        } = await getMovieDetails(movieId);
 
         const img = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         const date = release_date.slice(0, 4);
@@ -41,8 +39,9 @@ export default function MovieDetailsPage() {
         });
       } catch (error) {
         console.log(error);
-        setIsLoading(false);
         setError(true);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchMovieDetails();
@@ -73,15 +72,16 @@ export default function MovieDetailsPage() {
           </div>
           <div className={styles.card__more}>
             <h4>Additional information</h4>
-            {/* <ul>
+            <ul>
               <li>
-                <Link>Cast</Link>
+                <Link to="cast">Cast</Link>
               </li>
               <li>
-                <Link>Reviews</Link>
+                <Link to="reviews">Reviews</Link>
               </li>
-            </ul> */}
+            </ul>
           </div>
+          <Outlet />
         </>
       )}
       {isLoading && <p>Loading...</p>}
