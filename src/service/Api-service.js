@@ -23,3 +23,12 @@ export const getMovieReviews = async id => {
   const response = await axios.get(`/movie/${id}/reviews?api_key=${API_KEY}`);
   return response.data;
 };
+
+export const searchMovies = async query => {
+  const response = await axios.get(
+    `/search/movie?api_key=${API_KEY}&query=${query}`
+  );
+  return response.data;
+};
+
+// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&query=batman&page=1
