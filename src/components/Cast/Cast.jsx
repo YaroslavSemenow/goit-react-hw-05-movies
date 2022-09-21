@@ -16,7 +16,9 @@ export default function Cast() {
       try {
         const result = await getMovieCredits(movieId);
         const cast = result.cast.map(({ name, character, profile_path }) => {
-          const img = `https://image.tmdb.org/t/p/w500${profile_path}`;
+          const img = profile_path
+            ? `https://image.tmdb.org/t/p/w500${profile_path}`
+            : 'https://cdn.icon-icons.com/icons2/1812/PNG/512/4213460-account-avatar-head-person-profile-user_115386.png';
           return { name, character, img };
         });
 

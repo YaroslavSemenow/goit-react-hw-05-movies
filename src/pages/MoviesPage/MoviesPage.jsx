@@ -15,7 +15,9 @@ export default function MoviesPage() {
       return;
     }
 
+    setIsMovie(true);
     setIsLoading(true);
+    setMovies(null);
 
     async function fetchMovies() {
       try {
