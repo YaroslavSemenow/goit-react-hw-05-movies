@@ -46,12 +46,13 @@ export default function MoviesPage() {
 
   const handlerSubmit = e => {
     e.preventDefault();
+    const normalizedInputValue = inputValue.trim();
 
-    if (inputValue === '') {
+    if (normalizedInputValue === '') {
       return;
     }
 
-    setQuery(inputValue);
+    setQuery(normalizedInputValue);
     setInputValue('');
   };
 
