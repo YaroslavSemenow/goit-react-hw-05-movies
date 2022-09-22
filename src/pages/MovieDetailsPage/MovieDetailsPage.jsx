@@ -52,7 +52,7 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   const OnGoBack = () => {
-    navigate(location.state.from.location);
+    navigate(location?.state?.from?.location ?? '/');
   };
 
   return (
