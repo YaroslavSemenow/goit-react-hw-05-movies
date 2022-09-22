@@ -1,14 +1,10 @@
-.card__main {
-  display: flex;
-}
+.button {
+  padding: 10px 10px 10px 23px;
 
-.card__main,
-.card__more {
-  padding-bottom: 10px;
-
-  border-bottom: 3px solid rgba(154, 154, 154, 0.721);
-}
-
-.card__img {
-  margin-right: 20px;
+  background-image: url('../../img/go-to-back.png');
+  background-position: 5% 45%;
+  background-color: transparent;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  border: transparent;
 }

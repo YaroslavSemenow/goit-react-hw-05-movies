@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getTrendingMovies } from '../../service/Api-service';
 import MoviesList from '../../components/MoviesList/MoviesList';
-
 export default function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

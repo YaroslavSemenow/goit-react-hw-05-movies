@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { getMovieDetails } from '../../service/Api-service';
+import MovieCard from '../../components/MovieCard/MovieCard';
 import styles from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -25,7 +29,7 @@ export default function MovieDetailsPage() {
 
         const img = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         const date = release_date.slice(0, 4);
-        const scoreInPercentage = Math.round(vote_average * 10);
+        const scoreInPercentage = Math.round(vote_average * 10).toString();
         const genresNormalized = genres.map(genre => genre.name).join(' ');
 
         setIsLoading(false);
@@ -47,43 +51,16 @@ export default function MovieDetailsPage() {
     fetchMovieDetails();
   }, [movieId]);
 
+  const OnGoBack = () => {
+    navigate(location.state.from.location);
+  };
+
   return (
     <div>
-      {movieDetails && (
-        <>
-          <div className={styles.card__main}>
-            <img
-              className={styles.card__img}
-              src={movieDetails.img}
-              alt={movieDetails.title}
-              width="270"
-              height="400"
-            />
-            <div>
-              <h2>
-                {movieDetails.title} ({movieDetails.date})
-              </h2>
-              <p>User Score: {movieDetails.scoreInPercentage}%</p>
-              <h3>Owerview</h3>
-              <p>{movieDetails.overview}</p>
-              <h3>Genres</h3>
-              <p>{movieDetails.genresNormalized}</p>
-            </div>
-          </div>
-          <div className={styles.card__more}>
-            <h4>Additional information</h4>
-            <ul>
-              <li>
-                <Link to="cast">Cast</Link>
-              </li>
-              <li>
-                <Link to="reviews">Reviews</Link>
-              </li>
-            </ul>
-          </div>
-          <Outlet />
-        </>
-      )}
+      <button className={styles.button} type="button" onClick={OnGoBack}>
+        Go back
+      </button>
+      {movieDetails && <MovieCard movie={movieDetails} />}
       {isLoading && <p>Loading...</p>}
       {error && <p>Oops, something went wrong. Please, reload the page</p>}
     </div>

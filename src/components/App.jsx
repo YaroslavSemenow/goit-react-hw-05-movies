@@ -1,8 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import HomePage from '../pages/HomePages/HomePage';
-// import MoviesPage from '../pages/MoviesPage/MoviesPage';
-// import MovieDetailsPage from '../pages/MovieDetailsPage/MovieDetailsPage';
 import Layout from './Layout/Layout';
 import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
@@ -15,7 +12,7 @@ const MovieDetailsPage = lazy(() =>
 
 export const App = () => {
   return (
-    <Suspense>
+    <Suspense fallback={<p>Loading...</p>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

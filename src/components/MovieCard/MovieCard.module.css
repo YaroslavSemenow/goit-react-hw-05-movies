@@ -1,0 +1,14 @@
+.card__main {
+  display: flex;
+}
+
+.card__main,
+.card__more {
+  padding-bottom: 10px;
+
+  border-bottom: 3px solid rgba(154, 154, 154, 0.721);
+}
+
+.card__img {
+  margin-right: 20px;
+}
