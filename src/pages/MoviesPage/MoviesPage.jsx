@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { searchMovies } from '../../service/Api-service';
+import MoviesList from '../../components/MoviesList/MoviesList';
 
 export default function MoviesPage() {
   const [inputValue, setInputValue] = useState('');
@@ -72,15 +72,7 @@ export default function MoviesPage() {
 
       {!isMovie && <p>No results found for "{query}"</p>}
 
-      {movies && (
-        <ul>
-          {movies.map(({ id, title }) => (
-            <li key={id}>
-              <Link to={id.toString()}>{title}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      {movies && <MoviesList movies={movies} />}
 
       {error && <p>Oops, something went wrong. Please, reload the page</p>}
     </>
