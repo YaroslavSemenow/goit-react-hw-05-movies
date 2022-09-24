@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
 import { searchMovies } from '../../service/Api-service';
 import MoviesList from '../../components/MoviesList/MoviesList';
+import { useSearchParams } from 'react-router-dom';
 
 export default function MoviesPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [inputValue, setInputValue] = useState('');
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState(null);
   const [isMovie, setIsMovie] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const query = searchParams.get('query');
+
   useEffect(() => {
-    if (query === '') {
+    if (query === null) {
       return;
     }
 
@@ -52,7 +55,7 @@ export default function MoviesPage() {
       return;
     }
 
-    setQuery(normalizedInputValue);
+    setSearchParams({ query: normalizedInputValue });
     setInputValue('');
   };
 
