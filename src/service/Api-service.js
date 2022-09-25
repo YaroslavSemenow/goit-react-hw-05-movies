@@ -30,5 +30,3 @@ export const searchMovies = async query => {
   );
   return response.data;
 };
-
-// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&query=batman&page=1
